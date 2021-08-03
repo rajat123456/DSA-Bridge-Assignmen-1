@@ -80,6 +80,10 @@ public class Q3 {
     // delete function
     static DoublyLinkListNode delete(int value, DoublyLinkListNode headref)
     {
+        // case of single node
+        if(headref.next==null && headref.value==value)
+        return null;
+       
         DoublyLinkListNode cur=headref;
         DoublyLinkListNode pre=null;
         
