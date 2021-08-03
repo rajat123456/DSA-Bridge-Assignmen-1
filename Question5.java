@@ -15,8 +15,8 @@ public class Main {
         // size of stack
         System.out.println("Size of Stack: "+size(stk));
         
-        // pop from empty stack
-        pop(stk);
+        // pop from empty stack 
+        pop(stk); // UNDERFLOW
         
         // push into stack
         push(1, stk);
@@ -28,7 +28,8 @@ public class Main {
         // print entire stack
         print(stk);
         
-        push(4, stk);
+        // push into full stack
+        push(4, stk); // OVERFLOW
         
         pop(stk);
         pop(stk);
@@ -38,7 +39,7 @@ public class Main {
         
         System.out.println("Size of Stack: "+size(stk));
         
-        pop(stk);
+        pop(stk); // UNDERFLOW
         
     }
     
