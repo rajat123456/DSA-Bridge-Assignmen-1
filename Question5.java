@@ -2,7 +2,7 @@
  * @author rajatrawat
  */
  
-public class Q5 {
+public class Main {
     
     // keep track of elements
     static int rear=-1;
@@ -18,7 +18,7 @@ public class Q5 {
         // pop from empty stack
         pop(stk);
         
-        
+        // push into stack
         push(1, stk);
         push(2, stk);
         push(3, stk);
@@ -28,12 +28,12 @@ public class Q5 {
         // print entire stack
         print(stk);
         
-        // delete node
+        push(4, stk);
+        
         pop(stk);
         pop(stk);
         pop(stk);
         
-        // print entire stack
         print(stk);
         
         System.out.println("Size of Stack: "+size(stk));
