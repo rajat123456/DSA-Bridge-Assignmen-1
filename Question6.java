@@ -49,14 +49,15 @@ public class Q6 {
     static void enqueue(int value, QueueUsingArray qu)
     {
         
-        rear++;
-        
-        if(rear==qu.arr.length)
+        // enqueuing only when rear is within the bound of array index
+        // check ki that if we increment rear will it cause overflow?
+        if(rear+1==qu.arr.length)
         {
          System.out.println("Overflow");
          return;
         }
         
+       rear++;
        qu.arr[rear]=value;
        
     }   
@@ -66,21 +67,15 @@ public class Q6 {
     static void dequeue(QueueUsingArray qu)
     {
         
+       // whenever front & rear at at same index, means we have 0 elements in queue   
        if(front==rear)
        {
          System.out.println("Underflow");
          return;
        }
        
+       // wherever front is pointing from the next index onwards we have elements in queue
        ++front;
-       
-       if(front>=qu.arr.length)
-       {
-           System.out.println("Underflow");
-           return;
-       }
-       
-       qu.arr[front]=Integer.MIN_VALUE;
     
    }
    
@@ -88,11 +83,6 @@ public class Q6 {
    // size function
     static int size(QueueUsingArray qu)
     {
-        
-       if(rear>=qu.arr.length)
-       return qu.arr.length-1-front;
-       
-       else
        return (rear-front);   
     }
     
@@ -111,9 +101,9 @@ public class Q6 {
         
           System.out.print("Contents of Queue: ");
         
-          for(int q=0; q<qu.arr.length; q++)
+          // elements present in queue from front till rear
+          for(int q=front+1; q<=rear; q++)
            {
-             if(qu.arr[q]!=Integer.MIN_VALUE)  
              System.out.print(qu.arr[q]+" ");
            }
         
