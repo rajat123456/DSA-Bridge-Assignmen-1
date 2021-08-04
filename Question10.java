@@ -53,11 +53,11 @@ public class Main {
         left1.right=null;   //         /     \
         left2.left=null;    //       40       60
         left2.right=left3;  //      /  \      / \
-        right1.left=right2; //    35   n  56  null
-        right1.right=null;  //    / \     /  \
-        right2.left=null;   //   34 n  null   n   
-        right2.right=right3;
-        left3.left=null;
+        right1.left=right2; //    30   42  56  null
+        right1.right=null;  //    / \     /   \
+        right2.left=null;   //   null 35 null  58    
+        right2.right=right3; //       /\      /  \
+        left3.left=null;     //    null null null  null
         left3.right=null;
         right3.left=null;
         right3.right=null;
@@ -124,10 +124,11 @@ public class Main {
             //case 3 -> both childs
             else if(root.left!=null && root.right!=null)
             {
-              Pair ino=null;    
-              ino= findmaxonleft(root.left, root.left.value, root.left, ino);
-              root.value=ino.value;
-              root.left=ino.node;
+              // get largest from left & assign it as root value
+              root.value=findmaxonleft(root.left);
+              
+              // delete that maximum value recursively
+              root.left=delete(root.left, root.value);
             }
             
         }
@@ -135,20 +136,21 @@ public class Main {
         return root;
     }
    
-   
-    static Pair findmaxonleft(BSTUsingLL root, int maxval, BSTUsingLL maxvalnode, Pair ino)
+    // find max on left side
+    static int findmaxonleft(BSTUsingLL root)
     {
+        int max=Integer.MIN_VALUE;
         
-        if(root.value>maxval)
+        while(root!=null)
         {
-         ino.value=root.value;
-         ino.node=maxvalnode;
+            if(root.value>max)
+            max=root.value;
+            
+            root=root.right;
+            
         }
         
-        if(root.right==null)
-          return ino;
-        
-        return findmaxonleft(root.right, maxval, maxvalnode, ino);
+        return max;
     }
    
    // find function
@@ -176,12 +178,6 @@ public class Main {
         
     }
     
-}
-
-class Pair
-{
-    int value;
-    BSTUsingLL node;
 }
 
 //BSTUsingLL class with 3 properties: value, left child & right child
